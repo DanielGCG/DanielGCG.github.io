@@ -1,0 +1,168 @@
+@keyframes deslizarparadireita{
+    from {
+        transform: translateX(-120%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: url(background.png);
+    background-size: cover;
+    background-position: center;
+
+}
+
+.navbar{
+    width: 85%;
+    margin: auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 320px;
+    cursor: pointer;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+    font-size: 25px
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar ul li a::after{
+    content: '';
+    height: 0px;
+    width: 100%;
+    background: #F4A460;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.navbar ul li a:hover::after{
+    height: 3px;
+}
+
+.nome{
+    width: 65%;
+    position: absolute;
+    top: 5%;
+    transform: translateY(0%);
+    text-align: center;
+    color: #F4A460;
+}
+
+.nome h1{
+    font-size: 100px;
+    font-family: Magazine;
+}
+
+.boasvindas{
+    width: 33%;
+    position: absolute;
+    top: 22%;
+    text-align: center;
+    color: #fff;
+}
+
+.boasvindas h1{
+    font-size: 80px;
+    font-family: Magazine;
+    animation-name: deslizarparadireita;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    
+    transform: translateX(-150px);
+}
+
+.primeiroupdate{
+    width: 38%;
+    position: absolute;
+    top: 33%;
+    text-align: justify;
+    color: #fff;
+    transform: translateX(50px);
+}
+
+.primeiroupdate h1{
+    font-size: 30px;
+    font-family: Magazine;
+    animation-name: deslizarparadireita;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    
+    transform: translateX(-120px);
+}
+
+.primeiroupdate h2{
+    font-size: 30px;
+    font-family: Magazine;
+    animation-name: deslizarparadireita;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    
+    transform: translateX(-150px);
+}
+
+.vela{
+    width: 15%;
+    margin: auto;
+    height: auto;
+    padding: 200px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fogos1{
+    width: 15%;
+    margin: auto;
+    height: auto;
+    padding: 200px 0;
+    display: flex;
+    align-items: center;
+    }
+
+.fogos2{
+    width: 15%;
+    margin: auto;
+    height: auto;
+    padding: 200px 0;
+    display: flex;
+    align-items: center;
+    }
