@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: BSMP</title>
+    <script>
+        function verificarSenha() {
+            var senhaInserida = document.getElementById("senha").value;
+            var senhaCorreta = "senhamuitofoda"; // Coloque sua senha correta aqui
+        
+            if (senhaInserida === senhaCorreta) {
+                window.location.href = "outrapagina.html"; // Substitua "outrapagina.html" pelo caminho da sua página
+            } else {
+                alert("Senha incorreta. Tente novamente.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var senhaInput = document.getElementById("senha");
+            senhaInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    verificarSenha();
+                }
+            });
+        });
+        </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,36 +35,35 @@
             background-size: cover;
         }
         header {
-            background: rgba(51, 51, 51, 0.8); /* Transparência para o fundo */
+            background: rgba(76, 34, 104, 0.8); /* Transparência para o fundo */
             color: #fff;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             text-align: center;
         }
         header h1 {
             margin: 0;
             font-size: 2.5rem;
         }
+        header h2 {
+            font-size: 1.5rem;
+            color: #7314cc;
+        }
         main {
             padding: 1rem;
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Transparência para o fundo */
+            background: rgba(255, 255, 255, 0.85); /* Transparência para o fundo */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .post_header{
-            color: #000000;
-            font-size: 2.5rem;
-            text-align: center;
         }
         .post {
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #5d4e7098;
         }
         .post h1 {
             margin-top: 2rem;
             font-size: 1rem;
-            color: #1d1d1d;
+            color: #184eb3;
         }
         .post h2 {
             font-size: 1.5rem;
@@ -51,7 +71,7 @@
         }
         .post p {
             font-size: 1rem;
-            color: #666;
+            color: #910000;
         }
         footer {
             text-align: center;
@@ -73,12 +93,10 @@
 </head>
 <body>
     <header>
-        <h1>Project: BSMP</h1>
+        <h1>CronoMiner</h1>
+        <h2>CHAT</h2>
     </header>
     <main>
-        <section class="post_header">
-            <p>CHAT</p>
-        </section>
         <section class="post">
             <h2>(sem assunto)</h2>
             <p>Enviado por: <a href="mailto:gerentebsmp@gmail.com">gerentebsmp@gmail.com</a></p>
@@ -91,6 +109,9 @@
             <p>"O plano está perto de ser concluído."</p>
             <h1>Data: 21:36, 12 de junho de 2024</h1>
         </section>
+        <h2>Insira a senha:</h2>
+        <input type="password" id="senha">
+        <button onclick="verificarSenha()">Verificar Senha</button>
     </main>
 </body>
 </html>
