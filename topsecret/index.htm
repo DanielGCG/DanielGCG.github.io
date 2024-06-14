@@ -7,13 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         header {
-            background: #333;
+            background: rgba(51, 51, 51, 0.8); /* Transparência para o fundo */
             color: #fff;
             padding: 1rem 0;
             text-align: center;
@@ -26,13 +27,17 @@
             padding: 1rem;
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9); /* Transparência para o fundo */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .post {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #ddd;
+        }
+        .post h1 {
+            font-size: 1rem;
+            color: #1d1d1d;
         }
         .post h2 {
             font-size: 1.5rem;
@@ -45,7 +50,7 @@
         footer {
             text-align: center;
             padding: 1rem 0;
-            background: #333;
+            background: rgba(51, 51, 51, 0.8); /* Transparência para o fundo */
             color: #fff;
             position: fixed;
             width: 100%;
@@ -68,14 +73,14 @@
         <section class="post">
             <h2>(sem assunto)</h2>
             <p>Enviado por: Gerente </p>
-            <p>Data: 21:43, 12 de junho de 2024</p>
-            <p>Certo, continue os trabalhos, precisamos disso pra ontem!</p>
+            <p>"Certo, continue os trabalhos, precisamos disso pra ontem!"</p>
+            <h1>Data: 21:43, 12 de junho de 2024</h1>
         </section>
         <section class="post">
             <h2>Andamento do serviço.</h2>
             <p>Enviado por: Funcionário 47213 </p>
-            <p>Data: 21:36, 12 de junho de 2024</p>
-            <p>O plano está perto de ser concluído.</p>
+            <p>"O plano está perto de ser concluído."</p>
+            <h1>Data: 21:36, 12 de junho de 2024</h1>
         </section>
     </main>
     <footer>
