@@ -45,6 +45,7 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("entradaAudio");
+            audio.volume = 0.075;
             audio.play().catch(function(error) {
                 console.log("Autoplay foi bloqueado pelo navegador.", error);
             });
