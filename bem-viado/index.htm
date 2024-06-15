@@ -10,7 +10,7 @@
             line-height: 1;
             margin: 0;
             padding: 0;
-            background: url('Public/background1.png') no-repeat center center fixed;
+            background: url('public/background.webp') no-repeat center center fixed;
             background-size: cover;
         }
         header {
@@ -31,15 +31,33 @@
             padding: 1rem;
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.85); /* Transparência para o fundo */
+            background: rgba(236, 160, 243, 0.7); /* Transparência para o fundo */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .img-play {
+            display: block;
+            margin: 1rem auto;
+            cursor: pointer;
+            width: 100px; /* ajuste conforme necessário */
+            height: auto; /* manter proporção */
+        }
     </style>
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("entradaAudio");
+            audio.play().catch(function(error) {
+                console.log("Autoplay foi bloqueado pelo navegador.", error);
+            });
+        }
+    </script>
 </head>
 <body>
     <main>
-        <h1>Bem-Viado ao site.</h1>
+        <h1>Bem-Vindo ao site.</h1>
         <h1>by Nanda! :D</h1>
+        <p><img src="public/glass_beach.webp" class="img-play" onclick="playAudio()" alt="glass_beach">
+        <audio id="entradaAudio" src="public/glass beach - calico.mp3"></audio></p>
+        <p>Calico - Glass Beach :]</p>
     </main>
 </body>
 </html>
