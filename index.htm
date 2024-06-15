@@ -38,26 +38,33 @@
             display: block;
             margin: 1rem auto;
             cursor: pointer;
+            cursor: help;
             width: 100px; /* ajuste conforme necessário */
             height: auto; /* manter proporção */
         }
     </style>
     <script>
-        function playAudio() {
+        function toggleAudio() {
             var audio = document.getElementById("entradaAudio");
-            audio.volume = 0.075;
-            audio.play().catch(function(error) {
-                console.log("Autoplay foi bloqueado pelo navegador.", error);
-            });
+            if (audio.paused) {
+                audio.volume = 0.065;
+                audio.play().catch(function(error) {
+                    console.log("Autoplay foi bloqueado pelo navegador.", error);
+                });
+            } else {
+                audio.pause();
+            }
         }
     </script>
 </head>
 <body>
     <main>
         <h1>Bem-Vindo ao site.</h1>
-        <h1>by Nanda! :D</h1>
-        <p><img src="public/glass_beach.webp" class="img-play" onclick="playAudio()" alt="glass_beach">
-        <audio id="entradaAudio" src="public/glass beach - calico.mp3"></audio></p>
+        <h1>by GCG for Nanda! :D</h1>
+        <p>
+            <img src="public/glass_beach.webp" class="img-play" onclick="toggleAudio()" alt="glass_beach">
+            <audio id="entradaAudio" src="public/glass beach - calico.mp3"></audio>
+        </p>
         <p>Calico - Glass Beach :]</p>
     </main>
 </body>
