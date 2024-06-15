@@ -66,6 +66,24 @@
                 audio.pause();
             }
         }
+        function verificarSenha() {
+            var senhaInserida = document.getElementById("senha").value;
+            var senhaCorreta = "senhamuitofoda";
+        
+            if (senhaInserida === senhaCorreta) {
+                window.location.href = "https://boteco.live/topsecret";
+            } else {
+                alert("Senha incorreta. Tente novamente.");
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var senhaInput = document.getElementById("senha");
+            senhaInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    verificarSenha();
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -77,11 +95,13 @@
             <audio id="entradaAudio" src="public/glass beach - calico.mp3"></audio>
         </p>
         <p>Calico - Glass Beach :]</p>
-    <post>
         <h1>Links legais:</h1>
         <p><a href="https://x.com/bsmpfofoquei">Fofoquei BSMP</a></p>
         <p><a href="https://boteco.live/Velas">Velas!</a></p>
-    </post>
+        
+        <h2>Segredo Shhh!</h2>
+        <input type="password" id="senha">
+        <button onclick="verificarSenha()">Verificar Senha</button>
     </main>
 </body>
 </html>
