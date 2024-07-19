@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te amo Ry!</title>
+</head>
+
+<body>
+    <div id="pagina">
+        <div id="cabecalho">
+            <h1>Oi, Ry! :3</h1>
+        </div>
+        <div id="post" style=>
+            <h3>💌Mensagem❤️</h3>
+            <p>Só queria dizer que te amo muitão <3</p>
+        </div>
+        <p>
+            <img src="public/feel special.png" class="img-play" onclick="toggleAudio()" alt="glass_beach">
+            <audio id="entradaAudio" src="public/twice.mp3"></audio>
+        </p>
+    </div>
+</body>
+
+<style>
+    #pagina{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgb(68, 187, 122);
+    }
+
+    #cabecalho{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        text-align: center;
+        font-size:180%;
+    }
+
+    #post{
+        position:relative;
+        text-align: center;
+        font-size:110%;
+        top: 120px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .img-play {
+            display: block;
+            margin: 1rem auto;
+            cursor: pointer;
+            cursor: help;
+            width: 100px; /* ajuste conforme necessário */
+            height: auto; /* manter proporção */
+        }
+</style>
+
+<script>
+    function toggleAudio() {
+            var audio = document.getElementById("entradaAudio");
+            if (audio.paused) {
+                audio.volume = 0.065;
+                audio.play().catch(function(error) {
+                    console.log("Autoplay foi bloqueado pelo navegador.", error);
+                });
+            } else {
+                audio.pause();
+            }
+        }
+</script>
+
+
+</html>
