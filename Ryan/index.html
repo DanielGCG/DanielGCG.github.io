@@ -7,78 +7,76 @@
 </head>
 
 <body>
-    <main>
-        <div id="pagina">
-            <div id="cabecalho">
-                <h1>Oi, Ry! :3</h1>
-            </div>
-            <div id="post">
-                <h3 style="text-align: center;">💌 Mensagem 💌</h3>
-                <p>Ry, você é a minha inspiração, meu porto seguro, sinto que com você a gente pode ser tanta coisa, me sinto mais seguro, mais amado.</p>
-                <p>Obrigado por ter aparecido na minha vida, eu não sei expressar até hoje com palavras o quanto eu gosto de você. Você me faz sentir mais vivo, com mais cor e energia.</p>
-                <p>Olha só pra você, é bonito, inteligente e carinhoso, oque mais eu vou querer pra minha vida alem de uma pessoa incrível como você. Eu quero muito um futuro nosso, juntos.</p>
-                <p>As vezes sinto que não consigo ser ou fazer o suficiente pra ser digno do seu amor. Eu quero muito, de verdade provar que a gente pode ser muito feliz juntos.</p>
-                <p>Então, eu queria dizer isso pela milésima vez. Eu te amo. Mas tipo muitão, mesmo.</p>
-                <p>
-                    <img src="public/feel special.png" class="img-play" onclick="toggleAudio()" alt="glass_beach">
-                    <audio id="entradaAudio" src="public/twice.mp3"></audio>
-                    <p>Uma música especial para uma pessoa especial (clica para ouvir):</p>
-                </p>
-            </div>
+    <div id="pagina">
+        <div id="cabecalho">
+            <h1>Oi, Ry! :3</h1>
         </div>
-    </main>
+        <div id="post" style=>
+            <h3 style="text-align: center;">💌 Mensagem 💌</h3>
+            <p>Ry, você é a minha inspiração, meu porto seguro, sinto que com você a gente pode ser tanta coisa, me sinto mais seguro, mais amado.</p>
+            <p>Obrigado por ter aparecido na minha vida, eu não sei expressar até hoje com palavras o quanto eu gosto de você. Você me faz sentir mais vivo, com mais cor e energia.</p>
+            <p>Olha só pra você, é bonito, inteligente e carinhoso, oque mais eu vou querer pra minha vida alem de uma pessoa incrível como você. Eu quero muito um futuro nosso, juntos. </p>
+            <p>As vezes sinto que não consigo ser ou fazer o suficiente pra ser digno do seu amor. Eu quero muito, de verdade provar que a gente pode ser muito feliz juntos.</p>
+            <p>Então, eu queria dizer isso pela milésima vez. Eu te amo. Mas tipo muitão, mesmo.</p>
+        <p>
+            <img src="public/feel special.png" class="img-play" onclick="toggleAudio()" alt="glass_beach">
+            <audio id="entradaAudio" src="public/twice.mp3"></audio>
+            <p>Uma música especial para uma pessoa especial (clica para ouvir):</p>
+        </p>
+    </div>
 </body>
 
 <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
 
-    #pagina {
-        width: 100%;
-        height: 100%;
+    body{
         background: rgb(240, 90, 87);
-        overflow-y: auto;
+        background-size: cover;
     }
 
-    #cabecalho {
-        width: 100%;
+    #pagina{
+        position:relative;
+        top: 0;
+        left: 0;
+    }
+
+    #cabecalho{
+        position: relative;
         text-align: center;
-        font-size: 180%;
+        font-size:180%;
     }
 
-    #post {
-        font-size: 110%;
+    #post{
+        position:relative;
+        font-size:110%;
+        top: -10px;
         font-family: 'Times New Roman', Times, serif;
-        margin: 120px 30px 30px 30px;
-        text-align: justify;
+        margin-inline: 30px;
+        text-justify: newspaper;
     }
 
     .img-play {
-        display: block;
-        margin: 1rem auto;
-        cursor: pointer;
-        width: 200px;
-        height: auto;
-    }
+            display: block;
+            margin: 1rem auto;
+            cursor: pointer;
+            cursor: help;
+            width: 200px; /* ajuste conforme necessário */
+            height: auto; /* manter proporção */
+        }
 </style>
 
 <script>
     function toggleAudio() {
-        var audio = document.getElementById("entradaAudio");
-        if (audio.paused) {
-            audio.volume = 0.055;
-            audio.play().catch(function(error) {
-                console.log("Autoplay foi bloqueado pelo navegador.", error);
-            });
-        } else {
-            audio.pause();
+            var audio = document.getElementById("entradaAudio");
+            if (audio.paused) {
+                audio.volume = 0.055;
+                audio.play().catch(function(error) {
+                    console.log("Autoplay foi bloqueado pelo navegador.", error);
+                });
+            } else {
+                audio.pause();
+            }
         }
-    }
 </script>
+
 
 </html>
