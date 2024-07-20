@@ -28,43 +28,67 @@
 </script>
 
 <style>
-    body{
+    body {
         margin: 0;
         padding: 0;
         background-color: rgb(194, 118, 102);
-        background: url('public/background.webp')center center fixed;
+        background: url('public/background.webp') center center fixed;
         background-size: cover;
     }
 
-    #titulo{
+    #titulo {
         text-align: center;
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-variant: small-caps;
         color: rgb(255, 255, 255);
         text-shadow: 2px 2px #ff0000;
         font-size: 180%;
     }
 
-    #box-titulo{
+    #box-titulo {
         padding: 1rem;
         max-width: 80%;
         margin: 0 auto;
         background: rgba(236, 160, 243, 0.7); /* Transparência para o fundo */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: center;
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
 
-    #box{
-        columns: 1;
-        text-align: center;
+    #box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    #box-col{
-        max-width: 50%;
-        max-height: 50%;
-        margin-left: 10px;
-        margin-right: 10px;
+    #box-col-linha {
+        flex: 1 1 50%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-top: 1px solid rgb(115, 19, 46);
+    }
+
+    #box-col {
+        flex: 1 1 50%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #box-item {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #btn {
+        cursor: pointer;
+        border: 0;
+        background-color: transparent;
+        display: inline-block;
+        margin: 0 5px; /* Espaço entre os botões */
+    }
+
+    #btn a {
+        text-decoration: none; /* Remove underline */
+        display: inline-block;
     }
 
 </style>
@@ -75,26 +99,39 @@
     </div>
 
     <div id="box-titulo">
-        <h2><img src="public/casa.png" style="max-width: 25px; max-height: 25px;"> Portal</h2>
+        <img src="public/casa.png" style="max-width: 28px; max-height: 28px;"> 
+        <h2 style="margin-top: -8px;">Portal</h2>
         
         <div id="box">
-            <div id="box-col">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                <p>aaaaaaaaa</p>
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            <div id="box-col-linha">
+                <div id="box-item">
+                    <img src="public/clips.png" style="max-width: 28px; max-height: 28px;">
+                    <p style="margin-top: -5px;"><strong>links legais</strong></p>
+                    <button id="btn">
+                        <a href="https://x.com/iS2bsmp" alt="BSMP updates">
+                            <img src="public/bsmp-updates.jpg" style="max-width: 45px; max-height: 45px;">
+                        </a>
+                    </button>
+                    <button id="btn">
+                        <a href="https://x.com/BSMPLore" alt="BSMP Lore">
+                            <img src="public/bsmp2.jpg" style="max-width: 45px; max-height: 45px;">
+                        </a>
+                    </button>
+                    <button id="btn">
+                        <a href="https://x.com/bsmpfofoquei" alt="Fofoquei BSMP">
+                            <img src="public/fofoquei.jpg" style="max-width: 45px; max-height: 45px;">
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div id="box-col-linha">
+                <div id="box-item">
+                    <img src="public/quadromemorias.png" style="max-width: 28px; max-height: 28px;">
+                    <p style="margin-top: -5px;"><strong>quadro de memórias</strong></p>
+                    <a href="https://boteco.live/Memorias">junho/julho 2024</a>
+                </div>
             </div>
         </div>
-
     </div>
-    
-    
-
 </body>
 </html>
-
-
-<!--<h2>Segredo Shhh!</h2>
-        <p>Acha a senha e consiga uma surpresinha kinderovo! >:]</p>
-        <input type="password" id="senha">
-        <button onclick="verificarSenha()">Verificar Senha</button>-->
