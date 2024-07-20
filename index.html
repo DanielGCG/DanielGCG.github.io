@@ -45,7 +45,7 @@
         font-size: 180%;
     }
 
-    #box{
+    #box-titulo{
         padding: 1rem;
         max-width: 80%;
         margin: 0 auto;
@@ -54,20 +54,42 @@
         text-align: center;
         font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
+
+    #box{
+        columns: 1;
+        text-align: center;
+    }
+
+    #box-col{
+        max-width: 50%;
+        max-height: 50%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
 </style>
 
 <body>
     <div id="titulo">
-        <h1>boteco.live <img src="public/internet.png" style="max-width: 8%; max-height: 8%"></h1>
+        <h1>boteco.live <img src="public/internet.png" style="max-width: 40px; max-height: 40px"></h1>
     </div>
 
-    <div id="box">
-        <img src="public/casa.png" style="max-width: 6%; max-height: 6%;">
-        <h2>Opções</h2>
+    <div id="box-titulo">
+        <h2><img src="public/casa.png" style="max-width: 25px; max-height: 25px;"> Portal</h2>
         
-        <a>aaaaa</a>
+        <div id="box">
+            <div id="box-col">
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+        </div>
+
     </div>
-        
+    
+    
+
 </body>
 </html>
 
