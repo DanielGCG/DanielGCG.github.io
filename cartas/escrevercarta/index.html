@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Arquivo HTML</title>
+    <title>Text to HTML Converter</title>
+    <script src="text2HTML.js"></script>
 </head>
 <body>
-    <h1>Gerador de Arquivo HTML</h1>
-    <form id="textForm">
-        <label for="userText">Digite seu texto:</label><br>
-        <textarea id="userText" rows="10" cols="50"></textarea><br><br>
-        <button type="button" onclick="generateHTML()">Gerar e baixar arquivo HTML</button>
-    </form>
+    <h1>Text to HTML Converter</h1>
 
-    <script>
-        function generateHTML() {
-            const userText = document.getElementById('userText').value;
-            const htmlContent = '<!DOCTYPE html>\n' +
-                '<html lang="pt-BR">\n' +
-                '<head>\n' +
-                '    <meta charset="UTF-8">\n' +
-                '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
-                '    <title>Arquivo Gerado</title>\n' +
-                '</head>\n' +
-                '<body>\n' +
-                '    <p>' + userText + '</p>\n' +
-                '</body>\n' +
-                '</html>';
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+    
+    <label for="text">Text:</label><br>
+    <textarea id="text" name="text" rows="10" cols="50"></textarea><br><br>
 
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'arquivo.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    </script>
+    <label for="color">Background Color:</label>
+    <input type="color" id="color" name="color" value="#ffffff"><br><br>
+
+    <label for="senderName">Sender Name:</label>
+    <input type="text" id="senderName" name="senderName"><br><br>
+    
+    <label for="senderEmail">Sender Email (optional):</label>
+    <input type="email" id="senderEmail" name="senderEmail"><br><br>
+
+    <label for="recipientName">Recipient Name:</label>
+    <input type="text" id="recipientName" name="recipientName"><br><br>
+    
+    <label for="recipientEmail">Recipient Email (optional):</label>
+    <input type="email" id="recipientEmail" name="recipientEmail"><br><br>
+    
+    <button onclick="generateHTML()">Generate HTML</button>
+
 </body>
 </html>
