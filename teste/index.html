@@ -26,12 +26,13 @@
         <p id="statusMessage"></p>
     </div>
 
-    <!-- Adicione os scripts do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js"></script>
+    <!-- Adicione os scripts do Firebase a partir do CDN -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 
-    <script>
-        // Configurações do Firebase
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
             authDomain: "siteboteco.firebaseapp.com",
@@ -41,9 +42,9 @@
             appId: "1:618682213921:web:1cb5247779a050ff20a560"
         };
 
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
 
         // Função de upload
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
@@ -56,12 +57,12 @@
                 return;
             }
 
-            const storageRef = storage.ref().child('uploads/' + file.name);
+            const storageRef = ref(storage, 'uploads/' + file.name);
             const statusMessage = document.getElementById('statusMessage');
 
             try {
                 // Monitora o progresso do upload
-                const uploadTask = storageRef.put(file);
+                const uploadTask = uploadBytesResumable(storageRef, file);
 
                 uploadTask.on('state_changed',
                     (snapshot) => {
@@ -91,15 +92,15 @@
 
         // Lista os arquivos no Firebase Storage
         function listFiles() {
-            const listRef = storage.refFromURL('gs://siteboteco.appspot.com/uploads');
+            const listRef = ref(storage, 'uploads/');
 
-            listRef.listAll()
+            listAll(listRef)
                 .then((res) => {
                     const filesList = document.getElementById('filesList');
                     filesList.innerHTML = ''; // Limpa a lista anterior
 
                     res.items.forEach((itemRef) => {
-                        itemRef.getDownloadURL()
+                        getDownloadURL(itemRef)
                             .then((url) => {
                                 const li = document.createElement('li');
                                 li.innerHTML = `<a href="${url}" download="${itemRef.name}">${itemRef.name}</a>`;
