@@ -20,9 +20,8 @@
         <textarea id="text" placeholder="Text" required></textarea>
         <input type="color" id="color" required />
         <input type="text" id="senderName" placeholder="Sender Name" required />
-        <input type="email" id="senderEmail" placeholder="Sender Email" />
         <input type="text" id="recipientName" placeholder="Recipient Name" required />
-        <input type="email" id="recipientEmail" placeholder="Recipient Email" />
+        <input type="text" id="code" placeholder="code" required />
         <button type="button" onclick="generateHTML()">Gerar HTLM</button>
     </div>
 
@@ -31,8 +30,6 @@
         <h2>Status</h2>
         <p id="statusMessage"></p>
     </div>
-
-
     
     <script src="text2HTML.js"></script>
     <!-- Adicione os scripts do Firebase a partir do CDN -->
@@ -62,7 +59,7 @@
                 return;
             }
 
-            const storageRef = ref(storage, 'uploads/' + file.name);
+            const storageRef = ref(storage, 'cartinhas/' + file.name);
             const statusMessage = document.getElementById('statusMessage');
 
             try {
