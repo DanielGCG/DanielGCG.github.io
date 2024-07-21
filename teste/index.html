@@ -20,6 +20,12 @@
         <ul id="filesList"></ul>
     </div>
 
+    <!-- Seção para mostrar o status do upload -->
+    <div id="statusSection">
+        <h2>Status</h2>
+        <p id="statusMessage"></p>
+    </div>
+
     <!-- Adicione os scripts do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js"></script>
@@ -50,36 +56,41 @@
             }
 
             const storageRef = storage.ref().child('uploads/' + file.name);
+            const statusMessage = document.getElementById('statusMessage');
 
             try {
                 // Monitora o progresso do upload
                 const uploadTask = storageRef.put(file);
 
                 uploadTask.on('state_changed',
-                  (snapshot) => {
-                    // Progresso do upload
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                  },
-                  (error) => {
-                    // Erro no upload
-                    console.error('Error uploading file:', error);
-                  },
-                  () => {
-                    // Upload concluído
-                    alert('Arquivo enviado com sucesso!');
-                    listFiles(); // Atualiza a lista de arquivos
-                  }
+                    (snapshot) => {
+                        // Progresso do upload
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        statusMessage.innerText = 'Upload is ' + progress + '% done';
+                    },
+                    (error) => {
+                        // Erro no upload
+                        console.error('Error uploading file:', error);
+                        statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
+                    },
+                    () => {
+                        // Upload concluído
+                        console.log('Upload completed successfully!');
+                        statusMessage.innerText = 'Arquivo enviado com sucesso!';
+                        listFiles(); // Atualiza a lista de arquivos
+                    }
                 );
 
             } catch (error) {
                 console.error('Error uploading file:', error);
+                statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
             }
         });
 
         // Lista os arquivos no Firebase Storage
         function listFiles() {
-            const listRef = storage.refFromURL('gs://siteboteco.appspot.com/uploads');
+            const listRef = storage.refFromURL('gs://siteboteco.appspot.com');
 
             listRef.listAll()
                 .then((res) => {
