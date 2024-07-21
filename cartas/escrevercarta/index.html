@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Arquivo HTML</title>
+</head>
+<body>
+    <h1>Gerador de Arquivo HTML</h1>
+    <form id="textForm">
+        <label for="userText">Digite seu texto:</label><br>
+        <textarea id="userText" rows="10" cols="50"></textarea><br><br>
+        <button type="button" onclick="generateHTML()">Gerar e baixar arquivo HTML</button>
+    </form>
+
+    <script>
+        function generateHTML() {
+            const userText = document.getElementById('userText').value;
+            const htmlContent = '<!DOCTYPE html>\n' +
+                '<html lang="pt-BR">\n' +
+                '<head>\n' +
+                '    <meta charset="UTF-8">\n' +
+                '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+                '    <title>Arquivo Gerado</title>\n' +
+                '</head>\n' +
+                '<body>\n' +
+                '    <p>' + userText + '</p>\n' +
+                '</body>\n' +
+                '</html>';
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'arquivo.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
