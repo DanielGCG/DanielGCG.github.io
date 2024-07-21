@@ -12,7 +12,7 @@
     <form id="loginForm">
         <input type="email" id="emailInput" placeholder="Email" required>
         <input type="password" id="passwordInput" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
+        <button type="submit">Fazer Login</button>
     </form>
 
     <!-- Formulário de Cadastro -->
@@ -28,8 +28,14 @@
         <button type="submit">Upload</button>
     </form>
 
+    <!-- Seção para mostrar arquivos -->
+    <div id="filesSection" style="display: none;">
+        <h2>Arquivos</h2>
+        <ul id="filesList"></ul>
+    </div>
+
     <!-- Botões de Login/Logout -->
-    <button id="loginBtn">Fazer Login</button>
+    <button id="loginBtn" style="display: none;">Fazer Login</button>
     <button id="logoutBtn" style="display: none;">Sair</button>
 
     <!-- Botão para mostrar o formulário de cadastro -->
@@ -70,9 +76,12 @@
                     document.getElementById('uploadForm').style.display = 'block';
                     document.getElementById('loginBtn').style.display = 'none';
                     document.getElementById('logoutBtn').style.display = 'block';
+                    document.getElementById('filesSection').style.display = 'block';
+                    listFiles(); // Lista os arquivos após o login
                 })
                 .catch((error) => {
                     console.error("Erro de login:", error);
+                    alert("Erro de login. Verifique suas credenciais.");
                 });
         });
 
@@ -82,8 +91,9 @@
                     console.log("Usuário deslogado");
                     document.getElementById('loginForm').style.display = 'block';
                     document.getElementById('uploadForm').style.display = 'none';
-                    document.getElementById('loginBtn').style.display = 'block';
+                    document.getElementById('loginBtn').style.display = 'none';
                     document.getElementById('logoutBtn').style.display = 'none';
+                    document.getElementById('filesSection').style.display = 'none';
                 })
                 .catch((error) => {
                     console.error("Erro no logout:", error);
@@ -103,10 +113,12 @@
                     // Redirecione para a página de login ou exiba uma mensagem de sucesso
                     document.getElementById('loginForm').style.display = 'block';
                     document.getElementById('registerForm').style.display = 'none';
+                    alert("Conta criada com sucesso. Faça login para continuar.");
                 })
                 .catch((error) => {
                     console.error("Erro no cadastro:", error);
                     // Exiba uma mensagem de erro para o usuário
+                    alert("Erro ao criar conta. Verifique os dados inseridos.");
                 });
         });
 
@@ -146,6 +158,7 @@
                   () => {
                     // Upload concluído
                     alert('File uploaded successfully!');
+                    listFiles(); // Atualiza a lista de arquivos
                   }
                 );
 
@@ -153,6 +166,34 @@
                 console.error('Error uploading file:', error);
             }
         });
+
+        // Lista os arquivos no Firebase Storage
+        function listFiles() {
+            const listRef = storage.ref().child('uploads');
+
+            listRef.listAll()
+                .then((res) => {
+                    const filesList = document.getElementById('filesList');
+                    filesList.innerHTML = ''; // Limpa a lista anterior
+
+                    res.items.forEach((itemRef) => {
+                        itemRef.getDownloadURL()
+                            .then((url) => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `
+                                    <a href="${url}" download="${itemRef.name}">${itemRef.name}</a>
+                                `;
+                                filesList.appendChild(li);
+                            })
+                            .catch((error) => {
+                                console.error("Erro ao obter URL de download:", error);
+                            });
+                    });
+                })
+                .catch((error) => {
+                    console.error("Erro ao listar arquivos:", error);
+                });
+        }
     </script>
 </body>
 </html>
