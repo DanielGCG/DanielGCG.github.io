@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Arquivos</title>
+</head>
+<body>
+    <h1>Upload de Arquivos</h1>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" />
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Adicione os scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js"></script>
+
+    <script>
+        // Configurações do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
+            authDomain: "siteboteco.firebaseapp.com",
+            projectId: "siteboteco",
+            storageBucket: "siteboteco.appspot.com",
+            messagingSenderId: "618682213921",
+            appId: "1:618682213921:web:1cb5247779a050ff20a560"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+
+        // Função de upload
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Verifique se o usuário está autenticado (implemente sua lógica de autenticação)
+            if (!firebase.auth().currentUser) {
+                alert('Você precisa fazer login para fazer upload de arquivos.');
+                return;
+            }
+
+            const file = document.getElementById('fileInput').files[0];
+            const storageRef = storage.ref().child('uploads/' + file.name);
+
+            try {
+                // Monitora o progresso do upload
+                const uploadTask = storageRef.put(file);
+
+                uploadTask.on('state_changed',
+                  (snapshot) => {
+                    // Progresso do upload
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                  },
+                  (error) => {
+                    // Erro no upload
+                    console.error('Error uploading file:', error);
+                  },
+                  () => {
+                    // Upload concluído
+                    alert('File uploaded successfully!');
+                  }
+                );
+
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        });
+    </script>
+</body>
+</html>
