@@ -14,12 +14,6 @@
         <button type="submit">Upload</button>
     </form>
 
-    <!-- Seção para mostrar o status do upload -->
-    <div id="statusSection">
-        <h2>Status</h2>
-        <p id="statusMessage"></p>
-    </div>
-
     <!-- Formulário para gerar HTML -->
     <div id="generateForm">
         <input type="text" id="title" placeholder="Title" required />
@@ -29,7 +23,13 @@
         <input type="email" id="senderEmail" placeholder="Sender Email" />
         <input type="text" id="recipientName" placeholder="Recipient Name" required />
         <input type="email" id="recipientEmail" placeholder="Recipient Email" />
-        <button type="button" onclick="generateHTML()">Generate HTML and Upload</button>
+        <button type="button" onclick="generateHTML()">Gerar HTLM</button>
+    </div>
+
+    <!-- Seção para mostrar o status do upload -->
+    <div id="statusSection">
+        <h2>Status</h2>
+        <p id="statusMessage"></p>
     </div>
 
 
