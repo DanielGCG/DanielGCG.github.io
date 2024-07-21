@@ -4,100 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartinhas</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(194, 118, 102);
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh; /* Corrigido de -100vh para 100vh */
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        }
-
-        header {
-            text-align: center;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-variant: small-caps;
-            color: rgb(255, 255, 255);
-            text-shadow: 2px 2px #ff0000;
-            font-size: 180%;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: -10px;
-        }
-
-        .info-rectangle {
-            width: 300px;
-            height: auto;
-            background-color: #ffbdbd;
-            border: 3px solid #a73737;
-            padding: 20px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-            color: #333;
-            text-align: center;
-        }
-
-        .titulo {
-            text-align: center;
-            font-variant: small-caps;
-            color: rgb(255, 255, 255);
-            text-shadow: 2px 2px #ff0000;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .form-group input {
-            padding: 10px;
-            margin-top: 10px;
-            border: 2px solid #a73737;
-            border-radius: 6px;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        .form-group button {
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 6px;
-            background-color: #a73737;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        .form-group button:hover {
-            background-color: #822b2b;
-        }
-    </style>
 </head>
-
+    
 <body>
-    <header>
+    <div id="titulo-link">
         <a href="https://boteco.live" style="text-decoration: none;">
-            <h1 style="font-size: 180%; margin-top: -90px;">boteco.live <img src="public/internet.png" style="max-width: 40px; max-height: 40px"></h1>
+            <h1 style="font-size: 180%;">boteco.live <img src="public/internet.png" style="max-width: 40px; max-height: 40px"></h1>
         </a>
-    </header>
+    </div>
 
     <div class="titulo">
-        <h1 style="margin-top: -10px;">☕ cantinho das cartinhas 💌</h1>
+        <h1>☕ cantinho das cartinhas 💌</h1>
     </div>
 
     <main>
@@ -106,41 +23,132 @@
         </div>
 
         <div class="info-rectangle">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGVibDNlZG10dDRtbjRqZXVwMGZ6M2NyZmcwOGowbmNhcjNkZnZqOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/avm8UrAwNXlIV1CSnr/giphy.webp" style="max-width: 100px; margin-top: -30px;"></p>
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGVibDNlZG10dDRtbjRqZXVwMGZ6M2NyZmcwOGowbmNhcjNkZnZqOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/avm8UrAwNXlIV1CSnr/giphy.webp" style="max-width: 100px; transform: translateY(-30px);">
             <form class="form-group" onsubmit="redirectToPage(event)">
-                <input type="text" id="codigo" name="codigo" placeholder="Digite o código" required>
-                <button type="submit">Acessar</button>
+                <input type="text" id="codigo" name="codigo" placeholder="Digite o código" required style="transform: translateY(-30px);">
+                <button type="submit" style="transform: translateY(-30px);">Acessar 📂</button>
             </form>
+            <button class="btn">
+                <a href="https://boteco.live/cartas/escrevercarta">Criar nova 💫</a>
+            </button>
         </div>
     </main>
 
     <script>
         function redirectToPage(event) {
             event.preventDefault();
-            const codigo = document.getElementById('codigo').value;
+            const codigo = event.target.querySelector('input').value;
             window.location.href = `https://boteco.live/cartas/${codigo}`;
         }
     </script>
-
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-    
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-        apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
-        authDomain: "siteboteco.firebaseapp.com",
-        projectId: "siteboteco",
-        storageBucket: "siteboteco.appspot.com",
-        messagingSenderId: "618682213921",
-        appId: "1:618682213921:web:1cb5247779a050ff20a560"
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-    </script>
-    
 </body>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(194, 118, 102);
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #titulo-link {
+        text-align: center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-variant: small-caps;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px #ff0000;
+        font-size: 180%;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-rectangle {
+        width: 300px;
+        height: auto;
+        background-color: #ffbdbd;
+        border: 3px solid #a73737;
+        padding: 20px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        color: #333;
+        text-align: center;
+    }
+
+    .titulo {
+        text-align: center;
+        font-variant: small-caps;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px #ff0000;
+        padding-bottom: 25px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        margin-top: 10px;
+        border: 2px solid #a73737;
+        border-radius: 6px;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .form-group button {
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 6px;
+        background-color: #a73737;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .form-group button:hover {
+        background-color: #822b2b;
+    }
+
+    .btn {
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 6px;
+        background-color: #a73737;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .btn a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 1.5;
+    }
+
+    .btn:hover {
+        background-color: #822b2b;
+    }
+</style>
 </html>
