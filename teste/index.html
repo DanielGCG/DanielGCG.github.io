@@ -15,6 +15,13 @@
         <button type="submit">Entrar</button>
     </form>
 
+    <!-- Formulário de Cadastro -->
+    <form id="registerForm" style="display: none;">
+        <input type="email" id="registerEmailInput" placeholder="Email" required>
+        <input type="password" id="registerPasswordInput" placeholder="Senha" required>
+        <button type="submit">Criar Conta</button>
+    </form>
+
     <!-- Formulário de Upload -->
     <form id="uploadForm" style="display: none;">
         <input type="file" id="fileInput" />
@@ -24,6 +31,9 @@
     <!-- Botões de Login/Logout -->
     <button id="loginBtn">Fazer Login</button>
     <button id="logoutBtn" style="display: none;">Sair</button>
+
+    <!-- Botão para mostrar o formulário de cadastro -->
+    <button id="showRegisterFormBtn">Criar Conta</button>
 
     <!-- Adicione os scripts do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
@@ -78,6 +88,32 @@
                 .catch((error) => {
                     console.error("Erro no logout:", error);
                 });
+        });
+
+        // Criar um novo usuário
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('registerEmailInput').value;
+            const password = document.getElementById('registerPasswordInput').value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("Usuário criado:", user);
+                    // Redirecione para a página de login ou exiba uma mensagem de sucesso
+                    document.getElementById('loginForm').style.display = 'block';
+                    document.getElementById('registerForm').style.display = 'none';
+                })
+                .catch((error) => {
+                    console.error("Erro no cadastro:", error);
+                    // Exiba uma mensagem de erro para o usuário
+                });
+        });
+
+        // Mostrar/Ocultar Formulários
+        document.getElementById('showRegisterFormBtn').addEventListener('click', () => {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
         });
 
         // Função de upload
