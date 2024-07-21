@@ -32,8 +32,6 @@
         <button type="button" onclick="generateHTML()">Generate HTML and Upload</button>
     </div>
 
-
-    
     <script src="text2HTML.js"></script>
     <!-- Adicione os scripts do Firebase a partir do CDN -->
     <script type="module">
@@ -93,6 +91,45 @@
                 statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
             }
         }
+
+        // Função para gerar e fazer upload do HTML
+        async function generateHTML() {
+            const title = document.getElementById('title').value;
+            const text = document.getElementById('text').value;
+            const color = document.getElementById('color').value;
+            const senderName = document.getElementById('senderName').value;
+            const senderEmail = document.getElementById('senderEmail').value;
+            const recipientName = document.getElementById('recipientName').value;
+            const recipientEmail = document.getElementById('recipientEmail').value;
+
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                    <style>
+                        body { background-color: ${color}; }
+                    </style>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    <p>${text}</p>
+                    <footer>
+                        <p>From: ${senderName} (${senderEmail})</p>
+                        <p>To: ${recipientName} (${recipientEmail})</p>
+                    </footer>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const file = new File([blob], `${title}.html`, { type: 'text/html' });
+
+            await uploadFile(file);
+        }
+
         // Função de envio de formulário
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -101,7 +138,6 @@
             const file = document.getElementById('fileInput').files[0];
             uploadFile(file);
         });
-
     </script>
 </body>
 </html>
