@@ -48,6 +48,7 @@
         // Função de upload
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log("Formulário enviado");
 
             const file = document.getElementById('fileInput').files[0];
             if (!file) {
@@ -90,7 +91,7 @@
 
         // Lista os arquivos no Firebase Storage
         function listFiles() {
-            const listRef = storage.refFromURL('gs://siteboteco.appspot.com');
+            const listRef = storage.refFromURL('gs://siteboteco.appspot.com/uploads');
 
             listRef.listAll()
                 .then((res) => {
