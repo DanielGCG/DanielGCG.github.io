@@ -37,9 +37,13 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
                 <div id="pagina">
                     <div id="cabecalho">
                         <h1>${title}</h1>
-                        <h3>De: ${senderName}</h3>
-                        <h3>Para: ${recipientName}</h3>
                     </div>
+                    
+                    <div id="post">
+                        <p>De: ${senderName}</p>
+                        <p>Para: ${recipientName}</p>
+                    </div>
+                    
                     <div id="post">
                         <h3 style="text-align: center;">💌 Mensagem 💌</h3>
                         ${text}
