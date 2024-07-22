@@ -27,58 +27,63 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
     // 5: Create HTML Blob
     var htmlContent = `
         <html>
-        <head>
-            <title>${title}</title>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${title}</title>
+            </head>
+
+            <body>
+                <div id="pagina">
+                    <div id="cabecalho">
+                        <h1>${title}</h1>
+                        <h3>De: ${senderName}</h3>
+                        <h3>Para: ${recipientName}</h3>
+                    </div>
+                    <div id="post">
+                        <h3 style="text-align: center;">💌 Mensagem 💌</h3>
+                        ${text}
+                    </div>
+                </div>
+            </body>
+
             <style>
-                body {
+
+                body{
                     background: ${color};
                     background-size: cover;
                 }
-                #pagina {
-                    position: relative;
+
+                #pagina{
+                    position:relative;
                     top: 0;
                     left: 0;
                 }
-                #cabecalho {
+
+                #cabecalho{
                     position: relative;
                     text-align: center;
-                    font-size: 180%;
+                    font-size:180%;
                 }
-                #post {
-                    position: relative;
-                    font-size: 110%;
+
+                #post{
+                    position:relative;
+                    font-size:110%;
                     top: -10px;
                     font-family: 'Times New Roman', Times, serif;
                     margin-inline: 30px;
                     text-justify: newspaper;
                 }
-                .sender-recipient {
-                    margin: 20px 0;
-                }
-                .sender, .recipient {
-                    margin-bottom: 10px;
-                }
 
+                .img-play {
+                        display: block;
+                        margin: 1rem auto;
+                        cursor: pointer;
+                        cursor: help;
+                        width: 200px; /* ajuste conforme necessário */
+                        height: auto; /* manter proporção */
+                    }
             </style>
-        </head>
-        <body>
-            <div id='pagina'>
-                <div id='cabecalho'>
-                    <h1>${title}</h1>
-                </div>
-                <div class='sender-recipient'>
-                    <div class='sender'>
-                        <strong>From:</strong> ${senderName}
-                    </div>
-                    <div class='recipient'>
-                        <strong>To:</strong> ${recipientName}
-                    </div>
-                </div>
-                <div id='post'>
-                    ${formattedText}
-                </div>
-            </div>
-        </body>
         </html>
         `;
     var blob = new Blob([htmlContent], { type: 'text/html' });

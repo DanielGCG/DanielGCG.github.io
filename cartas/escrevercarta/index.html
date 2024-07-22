@@ -4,33 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload de Arquivos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(194, 118, 102);
+            background-size: cover;
+        }
+
+        #titulo-link {
+            text-align: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-variant: small-caps;
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px #ff0000;
+            font-size: 180%;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .info-rectangle {
+            width: 500px;
+            background-color: #ffbdbd;
+            border: 3px solid #a73737;
+            padding: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            color: #333;
+            text-align: center;
+        }
+
+        .inside-rectangle {
+            width: 100%;
+            max-width: 300px;
+            border: 3px solid #a73737;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            color: #333;
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 300px;
+            height: 100px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"], input[type="color"] {
+            width: 100%;
+            max-width: 300px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload de Arquivos</h1>
-
-    <!-- Formulário de Upload -->
-    <form id="uploadForm">
-        <input type="file" id="fileInput" required />
-        <button type="submit">Upload</button>
-    </form>
-
-    <!-- Formulário para gerar HTML -->
-    <div id="generateForm">
-        <input type="text" id="title" placeholder="Title" required />
-        <textarea id="text" placeholder="Text" required></textarea>
-        <input type="color" id="color" required />
-        <input type="text" id="senderName" placeholder="Sender Name" required />
-        <input type="text" id="recipientName" placeholder="Recipient Name" required />
-        <input type="text" id="code" placeholder="code" required />
-        <button type="button" onclick="generateHTML()">Gerar HTLM</button>
+    <div id="titulo-link">
+        <a href="https://boteco.live" style="text-decoration: none;">
+            <h1 style="font-size: 180%;">boteco.live <img src="public/internet.png" style="max-width: 40px; max-height: 40px"></h1>
+        </a>
     </div>
 
-    <!-- Seção para mostrar o status do upload -->
-    <div id="statusSection">
-        <h2>Status</h2>
-        <p id="statusMessage"></p>
-    </div>
-    
+    <main>
+        <!-- formulário de upload -->
+        <div class="info-rectangle">
+            <form id="uploadForm">
+                <input type="file" id="fileInput" required />
+                <button type="submit">Upload</button>
+            </form>
+            <!-- Seção para mostrar o status do upload -->
+            <div id="statusSection">
+                <h2>Status</h2>
+                <p id="statusMessage"></p>
+            </div>
+        </div>
+        <!-- gerador de html -->
+        <div class="info-rectangle">
+            <!-- Formulário para gerar HTML -->
+            <div class="inside-rectangle">
+                <input type="text" id="title" placeholder="Título" required />
+                <input type="text" id="senderName" placeholder="Remetente" required />
+                <input type="text" id="recipientName" placeholder="Destinatário" required />
+                <textarea id="text" placeholder="Texto" required></textarea>
+                <input type="color" id="color" required />
+                <input type="text" id="code" placeholder="Código de compartilhamento" required />
+                <button type="button" onclick="generateHTML()">Gerar HTML</button>
+            </div>
+        </div>
+    </main>
+
     <script src="text2HTML.js"></script>
     <!-- Adicione os scripts do Firebase a partir do CDN -->
     <script type="module">
