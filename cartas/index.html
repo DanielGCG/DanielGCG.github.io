@@ -33,15 +33,42 @@
             </button>
         </div>
     </main>
+</body>
 
-    <script>
-        function redirectToPage(event) {
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
+            authDomain: "siteboteco.firebaseapp.com",
+            projectId: "siteboteco",
+            storageBucket: "siteboteco.appspot.com",
+            messagingSenderId: "618682213921",
+            appId: "1:618682213921:web:1cb5247779a050ff20a560"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        window.redirectToPage = function(event) {
             event.preventDefault();
             const codigo = event.target.querySelector('input').value;
-            window.location.href = `gs://siteboteco.appspot.com/cartinhas/${codigo}.htm`;
+            const fileRef = ref(storage, `cartinhas/${codigo}.htm`);
+
+            getDownloadURL(fileRef)
+                .then((url) => {
+                    window.location.href = url;
+                })
+                .catch((error) => {
+                    console.error("Error fetching file:", error);
+                    alert("Não foi possível encontrar a cartinha. Verifique o código e tente novamente.");
+                });
         }
     </script>
-</body>
 
 <style>
     body {
