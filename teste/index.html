@@ -1,123 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de Arquivos</title>
-</head>
-<body>
-    <h1>Upload de Arquivos</h1>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${title}</title>
+    </head>
 
-    <!-- Formulário de Upload -->
-    <form id="uploadForm">
-        <input type="file" id="fileInput" required />
-        <button type="submit">Upload</button>
-    </form>
+    <body>
+            <div id="post">
+                
+                <div class="notebook-paper">
+                    <table>
+                        <div id="cabecalho">
+                            <h1>berealeletronico</h1>
+                        </div>
+                        <h3 style="text-align: center;">✉️ Cartinha ✉️</h3>
+                        <tr><td><p>De: gcg</p></td></tr>
+                        <tr><td><p>De: bestie</p></td></tr>
+                        <tr><td><p>amo vocês <3</p></td></tr>
+                        <tr><td><p>a</p></td></tr>
+                        <tr><td><p>a</p></td></tr>
+                        <tr><td><p>a</p></td></tr>
+                        <tr><td><p>a</p></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 
-    <!-- Seção para mostrar arquivos -->
-    <div id="filesSection">
-        <h2>Arquivos</h2>
-        <ul id="filesList"></ul>
-    </div>
-
-    <!-- Seção para mostrar o status do upload -->
-    <div id="statusSection">
-        <h2>Status</h2>
-        <p id="statusMessage"></p>
-    </div>
-
-    <!-- Adicione os scripts do Firebase a partir do CDN -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-        import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
-            authDomain: "siteboteco.firebaseapp.com",
-            projectId: "siteboteco",
-            storageBucket: "siteboteco.appspot.com",
-            messagingSenderId: "618682213921",
-            appId: "1:618682213921:web:1cb5247779a050ff20a560"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-
-        // Função de upload
-        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            console.log("Formulário enviado");
-
-            const file = document.getElementById('fileInput').files[0];
-            if (!file) {
-                alert('Por favor, selecione um arquivo para upload.');
-                return;
-            }
-
-            const storageRef = ref(storage, 'uploads/' + file.name);
-            const statusMessage = document.getElementById('statusMessage');
-
-            try {
-                // Monitora o progresso do upload
-                const uploadTask = uploadBytesResumable(storageRef, file);
-
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        // Progresso do upload
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                        statusMessage.innerText = 'Upload is ' + progress + '% done';
-                    },
-                    (error) => {
-                        // Erro no upload
-                        console.error('Error uploading file:', error);
-                        statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
-                    },
-                    () => {
-                        // Upload concluído
-                        console.log('Upload completed successfully!');
-                        statusMessage.innerText = 'Arquivo enviado com sucesso!';
-                        listFiles(); // Atualiza a lista de arquivos
-                    }
-                );
-
-            } catch (error) {
-                console.error('Error uploading file:', error);
-                statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
-            }
-        });
-
-        // Lista os arquivos no Firebase Storage
-        function listFiles() {
-            const listRef = ref(storage, 'uploads/');
-
-            listAll(listRef)
-                .then((res) => {
-                    const filesList = document.getElementById('filesList');
-                    filesList.innerHTML = ''; // Limpa a lista anterior
-
-                    res.items.forEach((itemRef) => {
-                        getDownloadURL(itemRef)
-                            .then((url) => {
-                                const li = document.createElement('li');
-                                li.innerHTML = `<a href="${url}" download="${itemRef.name}">${itemRef.name}</a>`;
-                                filesList.appendChild(li);
-                            })
-                            .catch((error) => {
-                                console.error("Erro ao obter URL de download:", error);
-                            });
-                    });
-                })
-                .catch((error) => {
-                    console.error("Erro ao listar arquivos:", error);
-                });
+    <style>
+        body {
+            background: white;
+            background-size: cover;
         }
 
-        // Chama a função para listar os arquivos ao carregar a página
-        document.addEventListener('DOMContentLoaded', listFiles);
-    </script>
-</body>
+        #pagina {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        #cabecalho {
+            position: relative;
+            text-align: center;
+            font-size: 180%;
+        }
+
+        #post {
+            position: relative;
+            font-size: 110%;
+            top: -10px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-inline: 30px;
+            text-justify: newspaper;
+        }
+
+        .img-play {
+            display: block;
+            margin: 1rem auto;
+            cursor: pointer;
+            cursor: help;
+            width: 200px; /* ajuste conforme necessário */
+            height: auto; /* manter proporção */
+        }
+
+        .notebook-paper {
+            border: 1px solid #fbfeaa;
+            padding: 10px;
+            background-color: #fbfeaa;
+            
+        }
+
+        .notebook-paper table {
+            width: 100%;
+            border-collapse: collapse;
+            
+        }
+
+        .notebook-paper td {
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid #ffd700; /* linha de fundo */
+            vertical-align: top;
+            max-width: 200px;
+        }
+
+        .notebook-paper p {
+            margin: 0;
+            padding: 0;
+            line-height: 25px; /* altura da linha pautada */
+            word-wrap: break-word; /* faz o texto quebrar para a próxima linha quando necessário */
+        }
+    </style>
 </html>

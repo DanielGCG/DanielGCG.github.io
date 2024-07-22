@@ -19,10 +19,10 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
     formattedText = formattedText.replace(/\r\n?|\n/g, "<br>");
 
     // 3: Paragraphs
-    formattedText = formattedText.replace(/<br>\s*<br>/g, "</p><p>");
+    formattedText = formattedText.replace(/<br>\s*<br>/g, "<tr><td><p></p></td></tr>");
 
     // 4: Wrap in Paragraph Tags
-    formattedText = "<p>" + formattedText + "</p>";
+    formattedText = "<tr><td><p></p>" + formattedText + "</p></td></tr>";
 
     // 5: Create HTML Blob
     var htmlContent = `
@@ -34,45 +34,44 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
             </head>
 
             <body>
-                <div id="pagina">
-                    <div id="cabecalho">
-                        <h1>${title}</h1>
-                    </div>
-                    
                     <div id="post">
-                        <p>De: ${senderName}</p>
-                        <p>Para: ${recipientName}</p>
-                    </div>
-                    
-                    <div id="post">
-                        <h3 style="text-align: center;">💌 Mensagem 💌</h3>
-                        ${text}
+                        
+                        <div class="notebook-paper">
+                            <table>
+                                <div id="cabecalho">
+                                    <h1>${title}</h1>
+                                </div>
+                                <h3 style="text-align: center;">✉️ Cartinha ✉️</h3>
+                                <tr><td><p>De: ${senderName}</p></td></tr>
+                                <tr><td><p>Para: ${recipientName}</p></td></tr>
+                                ${formattedText}
+                            </table>
+                        </div>
                     </div>
                 </div>
             </body>
 
             <style>
-
-                body{
+                body {
                     background: ${color};
                     background-size: cover;
                 }
 
-                #pagina{
-                    position:relative;
+                #pagina {
+                    position: relative;
                     top: 0;
                     left: 0;
                 }
 
-                #cabecalho{
+                #cabecalho {
                     position: relative;
                     text-align: center;
-                    font-size:180%;
+                    font-size: 180%;
                 }
 
-                #post{
-                    position:relative;
-                    font-size:110%;
+                #post {
+                    position: relative;
+                    font-size: 110%;
                     top: -10px;
                     font-family: 'Times New Roman', Times, serif;
                     margin-inline: 30px;
@@ -80,13 +79,41 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
                 }
 
                 .img-play {
-                        display: block;
-                        margin: 1rem auto;
-                        cursor: pointer;
-                        cursor: help;
-                        width: 200px; /* ajuste conforme necessário */
-                        height: auto; /* manter proporção */
-                    }
+                    display: block;
+                    margin: 1rem auto;
+                    cursor: pointer;
+                    cursor: help;
+                    width: 200px; /* ajuste conforme necessário */
+                    height: auto; /* manter proporção */
+                }
+
+                .notebook-paper {
+                    border: 1px solid #fbfeaa;
+                    padding: 10px;
+                    background-color: #fbfeaa;
+                    
+                }
+
+                .notebook-paper table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    
+                }
+
+                .notebook-paper td {
+                    padding: 0;
+                    margin: 0;
+                    border-bottom: 1px solid #ffd700; /* linha de fundo */
+                    vertical-align: top;
+                    max-width: 200px;
+                }
+
+                .notebook-paper p {
+                    margin: 0;
+                    padding: 0;
+                    line-height: 25px; /* altura da linha pautada */
+                    word-wrap: break-word; /* faz o texto quebrar para a próxima linha quando necessário */
+                }
             </style>
         </html>
         `;
