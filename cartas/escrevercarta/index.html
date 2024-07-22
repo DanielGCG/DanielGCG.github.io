@@ -165,12 +165,6 @@
                 return;
             }
 
-            // Verifica se o arquivo é do tipo .html
-            if (!file.name.endsWith('.html')) {
-                alert('Apenas arquivos .html são permitidos.');
-                return;
-            }
-
             const storageRef = ref(storage, 'cartinhas/' + file.name);
             const statusMessage = document.getElementById('statusMessage');
 
@@ -202,7 +196,6 @@
                 statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
             }
         }
-
         // Função de envio de formulário
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
