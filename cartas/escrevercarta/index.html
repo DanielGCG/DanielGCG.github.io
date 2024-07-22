@@ -67,6 +67,32 @@
             margin: 5px 0;
             box-sizing: border-box;
         }
+
+        #fileInput {
+            display: none;
+        }
+
+        #fileLabel {
+            display: inline-block;
+            cursor: pointer;
+            border: 0px transparent;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        #fileLabel img {
+            max-width: 40px;
+            max-height: 40px;
+            transform: translateY(12px);
+        }
+
+        #btn {
+            cursor: pointer;
+            border: 0px transparent;
+            background-color: transparent;
+            text-decoration: none; /* Remove underline */
+        }
+
     </style>
 </head>
 <body>
@@ -80,12 +106,19 @@
         <!-- formulário de upload -->
         <div class="info-rectangle">
             <form id="uploadForm">
-                <input type="file" id="fileInput" required />
-                <button type="submit">Upload</button>
+                <label for="fileInput" id="fileLabel">
+                    <img src="public/Explorer.png" alt="Upload">
+                </label>
+                <input type="file" id="fileInput" required/>
+
+                <span style="margin: 0 10px;">Selecione o arquivo para upload</span>
+
+                <button type="submit" style="cursor: pointer; border: 0px transparent; background-color: transparent;text-decoration: none;">
+                    <img src="public/Go.png" style="max-width: 40px; max-height: 40px; transform: translateY(12px);">
+                </button>
             </form>
             <!-- Seção para mostrar o status do upload -->
             <div id="statusSection">
-                <h2>Status</h2>
                 <p id="statusMessage"></p>
             </div>
         </div>
@@ -97,9 +130,9 @@
                 <input type="text" id="senderName" placeholder="Remetente" required />
                 <input type="text" id="recipientName" placeholder="Destinatário" required />
                 <textarea id="text" placeholder="Texto" required></textarea>
-                <input type="color" id="color" required />
+                <input type="color" id="color" value="#ffffff" required />
                 <input type="text" id="code" placeholder="Código de compartilhamento" required />
-                <button type="button" onclick="generateHTML()">Gerar HTML</button>
+                <button type="button" onclick="generateHTML()">Gerar cartinha</button>
             </div>
         </div>
     </main>
