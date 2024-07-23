@@ -14,14 +14,17 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
                             .replace(/</g, "&lt;")
                             .replace(/>/g, "&gt;");
 
-    // 2: Line Breaks
+    // 2: Preserve multiple spaces
+    formattedText = formattedText.replace(/  /g, ' &nbsp;'); // replace double spaces with space + &nbsp;
+
+    // 3: Line Breaks
     formattedText = formattedText.replace(/\r\n?|\n/g, "<br>");
 
-    // 3: Wrap in Paragraph Tags and table rows
+    // 4: Wrap in Paragraph Tags and table rows
     var lines = formattedText.split("<br>");
-    formattedText = lines.map(line => `<tr><td><p>${line.trim()}</p></td></tr>`).join("");
+    formattedText = lines.map(line => `<tr><td><p>${line.trim() || "&nbsp;"}</p></td></tr>`).join("");
 
-    // 4: Create HTML Blob
+    // 5: Create HTML Blob
     var htmlContent = `
         <html>
             <head>
@@ -94,21 +97,22 @@ function text2HTML(title, text, color, senderName, recipientName, code) {
                     padding: 0;
                     line-height: 25px; /* altura da linha pautada */
                     word-wrap: break-word; /* faz o texto quebrar para a próxima linha quando necessário */
+                    min-height: 25px; /* garantir altura mínima da linha */
                 }
             </style>
         </html>
     `;
     var blob = new Blob([htmlContent], { type: 'text/html' });
 
-    // 5: Create a link element to download the blob
+    // 6: Create a link element to download the blob
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = code;
 
-    // 6: Append the link to the body and click it to trigger the download
+    // 7: Append the link to the body and click it to trigger the download
     document.body.appendChild(link);
     link.click();
 
-    // 7: Remove the link from the document
+    // 8: Remove the link from the document
     document.body.removeChild(link);
 }
