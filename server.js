@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
 });
 
 // Define a porta em que o servidor vai escutar
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Servidor rodando em http://boteco.live:${PORT}`);
 });
