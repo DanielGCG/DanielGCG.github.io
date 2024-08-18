@@ -5,11 +5,20 @@ const path = require('path');
 // Cria um servidor HTTP
 const server = http.createServer((req, res) => {
   // Define o caminho absoluto do arquivo solicitado
-  let filePath = path.join(__dirname, 'index.html');
+  let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
 
-  // Para melhorar, poderíamos verificar o req.url para servir outros arquivos
-  if (req.url !== '/' && req.url !== '/favicon.ico') {
-    filePath = path.join(__dirname, req.url);
+  // Define o tipo de conteúdo de acordo com a extensão do arquivo
+  let contentType = 'text/html';
+  if (filePath.endsWith('.css')) {
+    contentType = 'text/css';
+  } else if (filePath.endsWith('.js')) {
+    contentType = 'application/javascript';
+  } else if (filePath.endsWith('.png')) {
+    contentType = 'image/png';
+  } else if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+    contentType = 'image/jpeg';
+  } else if (filePath.endsWith('.gif')) {
+    contentType = 'image/gif';
   }
 
   // Lê o arquivo solicitado
@@ -25,15 +34,7 @@ const server = http.createServer((req, res) => {
         res.end('Erro ao carregar a página.');
       }
     } else {
-      // Define o tipo de conteúdo de acordo com o arquivo
-      let contentType = 'text/html';
-      if (filePath.endsWith('.css')) {
-        contentType = 'text/css';
-      } else if (filePath.endsWith('.js')) {
-        contentType = 'application/javascript';
-      }
-
-      // Caso contrário, envia o conteúdo do arquivo solicitado
+      // Envia o conteúdo do arquivo solicitado
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(content);
     }
