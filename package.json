@@ -1,19 +1,19 @@
 {
     "name": "meu-site",
     "version": "1.0.0",
-    "description": "Um site estático servido por Node.js",
-    "main": "server.js", // Arquivo principal do projeto
+    "description": "Um site estático servido por server.js",
+    "main": "server.js",
     "scripts": {
-      "start": "node server.js", // Script para iniciar o servidor
-      "test": "echo \"Error: no test specified\" && exit 1" // Exemplo de script de teste
+      "start": "node server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Seu Nome",
+    "author": "Daniel Goulart",
     "license": "MIT",
     "dependencies": {
-      "express": "^4.17.1" // Exemplo de dependência para utilizar o framework Express
+      "express": "^4.17.1"
     },
     "devDependencies": {
-      "nodemon": "^2.0.22" // Ferramenta para reiniciar o servidor automaticamente durante o desenvolvimento
+      "nodemon": "^2.0.22"
     },
     "keywords": [
       "nodejs",
@@ -23,11 +23,11 @@
     ],
     "repository": {
       "type": "git",
-      "url": "https://github.com/seu-usuario/meu-site.git"
+      "url": "https://github.com/DanielGCG/DanielGCG.github.io"
     },
     "bugs": {
-      "url": "https://github.com/seu-usuario/meu-site/issues"
+      "url": "https://github.com/DanielGCG/DanielGCG.github.io"
     },
-    "homepage": "https://github.com/seu-usuario/meu-site#readme"
+    "homepage": "https://github.com/DanielGCG/DanielGCG.github.io"
   }
   
