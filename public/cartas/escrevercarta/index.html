@@ -157,12 +157,12 @@
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
-            authDomain: "siteboteco.firebaseapp.com",
-            projectId: "siteboteco",
-            storageBucket: "siteboteco.appspot.com",
-            messagingSenderId: "618682213921",
-            appId: "1:618682213921:web:1cb5247779a050ff20a560"
+            apiKey: process.env[apiKey],
+            authDomain: process.env[authDomain],
+            projectId: process.env[projectId],
+            storageBucket: process.env[storageBucket],
+            messagingSenderId: process.env[messagingSenderId],
+            appId: process.env[appId]
         };
 
         // Initialize Firebase
