@@ -1,0 +1,33 @@
+{
+    "name": "meu-site",
+    "version": "1.0.0",
+    "description": "Um site estático servido por Node.js",
+    "main": "server.js", // Arquivo principal do projeto
+    "scripts": {
+      "start": "node server.js", // Script para iniciar o servidor
+      "test": "echo \"Error: no test specified\" && exit 1" // Exemplo de script de teste
+    },
+    "author": "Seu Nome",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.17.1" // Exemplo de dependência para utilizar o framework Express
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.22" // Ferramenta para reiniciar o servidor automaticamente durante o desenvolvimento
+    },
+    "keywords": [
+      "nodejs",
+      "static",
+      "site",
+      "server"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/seu-usuario/meu-site.git"
+    },
+    "bugs": {
+      "url": "https://github.com/seu-usuario/meu-site/issues"
+    },
+    "homepage": "https://github.com/seu-usuario/meu-site#readme"
+  }
+  
