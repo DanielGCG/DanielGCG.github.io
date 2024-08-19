@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from enviar import enviar_tweet
+import os
 
 app = Flask(__name__)
 

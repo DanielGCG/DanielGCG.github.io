@@ -178,28 +178,28 @@
                 return getStorage(app);
             }
         }
-    
+
         // Função de upload que recebe um arquivo como argumento
         async function uploadFile(file) {
             if (!file) {
                 alert('Por favor, selecione um arquivo para upload.');
                 return;
             }
-    
+
             // Verifica se o arquivo é do tipo .htm
             if (!file.name.endsWith('.htm')) {
                 alert('Apenas arquivos .htm são permitidos.');
                 return;
             }
-    
+
             try {
                 const storage = await initializeFirebase();
                 const storageRef = ref(storage, 'cartinhas/' + file.name);
                 const statusMessage = document.getElementById('statusMessage');
-    
+
                 // Monitora o progresso do upload
                 const uploadTask = uploadBytesResumable(storageRef, file);
-    
+
                 uploadTask.on('state_changed',
                     (snapshot) => {
                         // Progresso do upload
@@ -216,31 +216,39 @@
                         // Upload concluído
                         console.log('Upload completed successfully!');
                         statusMessage.innerText = 'Arquivo enviado com sucesso!';
-    
-                        // Aqui você chama a API para enviar o tweet
-                        const mensagem = `Arquivo enviado: ${file.name}`;
+
+                        // Obtenha a URL do arquivo
+                        const fileURL = `https://firebasestorage.googleapis.com/v0/b/${storage.app.options.storageBucket}/o/cartinhas%2F${encodeURIComponent(file.name)}?alt=media`;
+
+                        // Aqui você chama a API para enviar o tweet com o link
                         try {
                             const response = await fetch('/send-tweet', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ mensagem }),
+                                body: JSON.stringify({ mensagem: fileURL }),
                             });
-                            const result = await response.json();
-                            console.log(result.message);
+
+                            const contentType = response.headers.get('content-type');
+                            if (contentType && contentType.includes('application/json')) {
+                                const result = await response.json();
+                                console.log(result.message);
+                            } else {
+                                console.error('Resposta não é JSON');
+                            }
                         } catch (error) {
                             console.error('Erro ao enviar o tweet:', error);
                         }
                     }
                 );
-    
+
             } catch (error) {
                 console.error('Error uploading file:', error);
                 document.getElementById('statusMessage').innerText = 'Erro ao enviar o arquivo: ' + error.message;
             }
         }
-    
+
         // Função de envio de formulário
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
