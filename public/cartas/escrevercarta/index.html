@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/gif" href="https://cdn.discordapp.com/icons/908158725653680158/a_e425dcf00374333c6f02cb2a873d1342.gif?size=100">
     <title>Upload de Arquivos</title>
     <style>
         body {
@@ -118,14 +119,14 @@
         <div class="info-rectangle">
             <form id="uploadForm">
                 <label for="fileInput" id="fileLabel">
-                    <img src="public/explorer.png" alt="Upload">
+                    <img src="public/explorer.png" alt="Escolher arquivo">
                 </label>
                 <input type="file" id="fileInput" required/>
 
                 <span style="margin: 0 10px;">anexe a cartinha e envie</span>
 
                 <button type="submit" style="cursor: pointer; border: 0px transparent; background-color: transparent;text-decoration: none;">
-                    <img src="public/go.png" style="max-width: 40px; max-height: 40px; transform: translateY(12px);">
+                    <img src="public/go.png" style="max-width: 40px; max-height: 40px; transform: translateY(12px);" alt="Upload">
                 </button>
             </form>
             <!-- Seção para mostrar o status do upload -->
@@ -151,44 +152,54 @@
     <script src="https://www.boteco.live/cartas/escrevercarta/text2HTML.js"></script>
     <!-- Adicione os scripts do Firebase a partir do CDN -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
         import { getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: process.env.FB_apiKey,
-            authDomain: process.env.FB_authDomain,
-            projectId: process.env.FB_projectId,
-            storageBucket: process.env.FB_storageBucket,
-            messagingSenderId: process.env.FB_messagingSenderId,
-            appId: process.env.FB_appId
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-
+    
+        // Função para buscar as configurações do Firebase
+        async function getFirebaseConfig() {
+            try {
+                const response = await fetch('/firebase-config');
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar a configuração do Firebase');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Erro ao buscar a configuração do Firebase:', error);
+                alert('Não foi possível carregar a configuração do Firebase.');
+            }
+        }
+    
+        // Função para inicializar o Firebase
+        async function initializeFirebase() {
+            const firebaseConfig = await getFirebaseConfig();
+            if (firebaseConfig) {
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                return getStorage(app);
+            }
+        }
+    
         // Função de upload que recebe um arquivo como argumento
         async function uploadFile(file) {
             if (!file) {
                 alert('Por favor, selecione um arquivo para upload.');
                 return;
             }
-
+    
             // Verifica se o arquivo é do tipo .htm
             if (!file.name.endsWith('.htm')) {
                 alert('Apenas arquivos .htm são permitidos.');
                 return;
             }
-
-            const storageRef = ref(storage, 'cartinhas/' + file.name);
-            const statusMessage = document.getElementById('statusMessage');
-
+    
             try {
+                const storage = await initializeFirebase();
+                const storageRef = ref(storage, 'cartinhas/' + file.name);
+                const statusMessage = document.getElementById('statusMessage');
+    
                 // Monitora o progresso do upload
                 const uploadTask = uploadBytesResumable(storageRef, file);
-
+    
                 uploadTask.on('state_changed',
                     (snapshot) => {
                         // Progresso do upload
@@ -207,22 +218,21 @@
                         statusMessage.innerText = 'Arquivo enviado com sucesso!';
                     }
                 );
-
+    
             } catch (error) {
                 console.error('Error uploading file:', error);
-                statusMessage.innerText = 'Erro ao enviar o arquivo: ' + error.message;
+                document.getElementById('statusMessage').innerText = 'Erro ao enviar o arquivo: ' + error.message;
             }
         }
-
+    
         // Função de envio de formulário
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
             console.log("Formulário enviado");
-
+    
             const file = document.getElementById('fileInput').files[0];
             uploadFile(file);
         });
-
-    </script>
+    </script>    
 </body>
 </html>
