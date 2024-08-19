@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/send-tweet', methods=['POST'])
+@app.route('/enviartweet', methods=['POST'])
 def send_tweet():
     data = request.json
     mensagem = data.get('mensagem', 'Mensagem padrão')
