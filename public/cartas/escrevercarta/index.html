@@ -227,12 +227,15 @@
                                 body: JSON.stringify({ mensagem: "oi" }),
                             });
 
+                            // Verifique o tipo de conteúdo da resposta
                             const contentType = response.headers.get('content-type');
                             if (contentType && contentType.includes('application/json')) {
                                 const result = await response.json();
                                 console.log(result.message);
                             } else {
-                                console.error('Resposta não é JSON');
+                                // Adicione um log para ver o conteúdo da resposta
+                                const responseText = await response.text();
+                                console.error('Resposta não é JSON:', responseText);
                             }
                         } catch (error) {
                             console.error('Erro ao enviar o tweet:', error);
@@ -254,6 +257,7 @@
             const file = document.getElementById('fileInput').files[0];
             uploadFile(file);
         });
+
     </script>        
 </body>
 </html>
