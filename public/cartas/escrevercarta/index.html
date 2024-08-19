@@ -219,7 +219,7 @@
 
                         // Aqui você chama a API para enviar o tweet com "oi"
                         try {
-                            const response = await fetch('/enviartweet', {
+                            const response = await fetch('public/cartas/escrevercarta/enviartweet/api.py', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
