@@ -41,14 +41,18 @@
         import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 
         // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyASiPD0smWeqgsB7wm2oj_sv3rp4i2LkKo",
-            authDomain: "siteboteco.firebaseapp.com",
-            projectId: "siteboteco",
-            storageBucket: "siteboteco.appspot.com",
-            messagingSenderId: "618682213921",
-            appId: "1:618682213921:web:1cb5247779a050ff20a560"
-        };
+        async function getFirebaseConfig() {
+            try {
+                const response = await fetch('/firebase-config');
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar a configuração do Firebase');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Erro ao buscar a configuração do Firebase:', error);
+                alert('Não foi possível carregar a configuração do Firebase.');
+            }
+        }
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
