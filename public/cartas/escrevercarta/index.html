@@ -217,17 +217,14 @@
                         console.log('Upload completed successfully!');
                         statusMessage.innerText = 'Arquivo enviado com sucesso!';
 
-                        // Obtenha a URL do arquivo
-                        const fileURL = `https://firebasestorage.googleapis.com/v0/b/${storage.app.options.storageBucket}/o/cartinhas%2F${encodeURIComponent(file.name)}?alt=media`;
-
-                        // Aqui você chama a API para enviar o tweet com o link
+                        // Aqui você chama a API para enviar o tweet com "oi"
                         try {
                             const response = await fetch('/send-tweet', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ mensagem: fileURL }),
+                                body: JSON.stringify({ mensagem: "oi" }),
                             });
 
                             const contentType = response.headers.get('content-type');
@@ -253,7 +250,7 @@
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
             console.log("Formulário enviado");
-    
+
             const file = document.getElementById('fileInput').files[0];
             uploadFile(file);
         });
