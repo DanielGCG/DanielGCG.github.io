@@ -62,7 +62,7 @@
                 throw new Error('A configuração do Firebase não contém um storageBucket.');
             }
 
-            // Initialize Firebase
+            // Inicializa Firebase
             const app = initializeApp(firebaseConfig);
             return getStorage(app);
         }
