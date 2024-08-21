@@ -16,5 +16,7 @@ def enviar_tweet(mensagem):
     try:
         api.update_status(mensagem)
         print("Tweet enviado com sucesso!")
-    except Exception as e:
+    except tweepy.TweepError as e:
         print(f"Erro ao enviar tweet: {e}")
+        raise
+

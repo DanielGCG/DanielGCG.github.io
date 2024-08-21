@@ -12,7 +12,8 @@ def send_tweet():
         enviar_tweet(mensagem)
         return jsonify({"status": "success", "message": "Tweet enviado com sucesso!"})
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)})
+        return jsonify({"status": "error", "message": f"Erro ao enviar tweet: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
