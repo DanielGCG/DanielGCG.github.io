@@ -1,9 +1,11 @@
 require('dotenv').config();
-const fetch = require('node-fetch').default; // Alteração aqui
+const fetch = require('node-fetch').default;
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors'); // Adicionando o pacote cors
+const OAuth = require('oauth-1.0a');
+const crypto = require('crypto');
 
 // Cria uma instância do Express
 const app = express();
@@ -29,20 +31,41 @@ app.get('/firebase-config', (req, res) => {
     });
 });
 
+// Configura a autenticação OAuth 1.0a
+const oauth = OAuth({
+    consumer: {
+        key: process.env.TWITTER_CONSUMER_KEY,
+        secret: process.env.TWITTER_CONSUMER_SECRET,
+    },
+    signature_method: 'HMAC-SHA1',
+    hash_function(base_string, key) {
+        return crypto.createHmac('sha1', key).update(base_string).digest('base64');
+    }
+});
+
 // Rota para enviar um tweet
 app.post('/send-tweet', async (req, res) => {
     const { text } = req.body; // Assume que o texto do tweet está no corpo da requisição
 
-    const bearerToken = process.env.TWITTER_BEARER_TOKEN;
+    const token = {
+        key: process.env.TWITTER_ACCESS_TOKEN,
+        secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    };
+
+    const request_data = {
+        url: 'https://api.twitter.com/1.1/statuses/update.json',
+        method: 'POST',
+        data: { status: text }
+    };
 
     try {
-        const response = await fetch('https://api.twitter.com/2/tweets', {
-            method: 'POST',
+        const response = await fetch(request_data.url, {
+            method: request_data.method,
             headers: {
-                'Authorization': `Bearer ${bearerToken}`,
-                'Content-Type': 'application/json',
+                'Authorization': oauth.toHeader(oauth.authorize(request_data, token)).Authorization,
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({ text }),
+            body: new URLSearchParams(request_data.data)
         });
 
         if (response.ok) {
