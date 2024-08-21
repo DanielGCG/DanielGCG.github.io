@@ -3,13 +3,16 @@ const fetch = require('node-fetch');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors'); // Adicionei o pacote cors
+const cors = require('cors'); // Adicionando o pacote cors
 
 // Cria uma instância do Express
 const app = express();
 
 // Adiciona o middleware CORS
 app.use(cors());
+
+// Middleware para processar JSON no corpo das requisições
+app.use(express.json()); // Adicionei esta linha para garantir que o corpo das requisições seja processado como JSON
 
 // Define o diretório 'public' como estático para servir arquivos estáticos como HTML, CSS, etc.
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,9 +28,6 @@ app.get('/firebase-config', (req, res) => {
         appId: process.env.FB_appId
     });
 });
-
-// Middleware para processar JSON no corpo das requisições
-app.use(express.json()); // Adicionei esta linha para garantir que o corpo das requisições seja processado como JSON
 
 // Rota para enviar um tweet
 app.post('/send-tweet', async (req, res) => {

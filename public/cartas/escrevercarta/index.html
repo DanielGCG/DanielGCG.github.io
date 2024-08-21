@@ -154,7 +154,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
         import { getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
-    
+
         // Função para buscar as configurações do Firebase
         async function getFirebaseConfig() {
             try {
@@ -168,7 +168,7 @@
                 alert('Não foi possível carregar a configuração do Firebase.');
             }
         }
-    
+
         // Função para inicializar o Firebase
         async function initializeFirebase() {
             const firebaseConfig = await getFirebaseConfig();
@@ -236,7 +236,6 @@
                         } catch (error) {
                             console.error('Erro ao enviar o tweet:', error);
                         }
-
                     }
                 );
 
@@ -300,6 +299,16 @@
 
         // Adiciona um event listener para o botão
         document.getElementById('generateButton').addEventListener('click', generateAndUpload);
+
+        // Adiciona um event listener para o formulário de upload
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (file) {
+                uploadFile(file);
+            }
+        });
     </script>        
 </body>
 </html>
