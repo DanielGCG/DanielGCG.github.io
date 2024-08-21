@@ -29,7 +29,33 @@ app.get('/firebase-config', (req, res) => {
     });
 });
 
+// Rota para enviar um tweet
+app.post('/send-tweet', async (req, res) => {
+    const { text } = req.body; // Assume que o texto do tweet está no corpo da requisição
 
+    const bearerToken = process.env.TWITTER_BEARER_TOKEN;
+
+    try {
+        const response = await fetch('https://api.twitter.com/2/tweets', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${bearerToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            res.json(result);
+        } else {
+            const error = await response.json();
+            res.status(response.status).json(error);
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao enviar o tweet' });
+    }
+});
 
 // Middleware para lidar com arquivos e diretórios
 app.use((req, res, next) => {
