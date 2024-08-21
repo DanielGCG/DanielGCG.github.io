@@ -15,7 +15,8 @@
     "express": "^4.18.2",
     "node-fetch": "^2.6.7",
     "cors": "^2.8.5",
-    "node": "20.x"
+    "oauth-1.0a": "^2.0.0",
+    "crypto": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
@@ -33,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/DanielGCG/DanielGCG.github.io/issues"
   },
-  "homepage": "https://github.com/DanielGCG/DanielGCG.github.io"
+  "homepage": "https://github.com/DanielGCG/DanielGCG.github.io",
+  "engines": {
+    "node": "20.x"
+  }
 }
