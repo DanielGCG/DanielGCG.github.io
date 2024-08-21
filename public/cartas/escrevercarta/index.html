@@ -6,7 +6,101 @@
     <link rel="icon" type="image/gif" href="https://cdn.discordapp.com/icons/908158725653680158/a_e425dcf00374333c6f02cb2a873d1342.gif?size=100">
     <title>Upload de Arquivos</title>
     <style>
-        /* Seu CSS existente */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(194, 118, 102);
+            background-size: cover;
+        }
+
+        #titulo-link {
+            text-align: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-variant: small-caps;
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px #ff0000;
+            font-size: 180%;
+        }
+
+        .titulo {
+        text-align: center;
+        font-variant: small-caps;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px #ff0000;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .info-rectangle {
+            width: 500px;
+            background-color: #ffbdbd;
+            border: 3px solid #a73737;
+            padding: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            color: #333;
+            text-align: center;
+        }
+
+        .inside-rectangle {
+            width: 100%;
+            max-width: 300px;
+            border: 3px solid #a73737;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            color: #333;
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 300px;
+            height: 100px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"], input[type="color"] {
+            width: 100%;
+            max-width: 300px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        #fileLabel {
+            display: inline-block;
+            cursor: pointer;
+            border: 0px transparent;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        #fileLabel img {
+            max-width: 40px;
+            max-height: 40px;
+            transform: translateY(12px);
+        }
+
+        #btn {
+            cursor: pointer;
+            border: 0px transparent;
+            background-color: transparent;
+            text-decoration: none; /* Remove underline */
+        }
+
     </style>
 </head>
 <body>
@@ -50,7 +144,7 @@
                 <textarea id="text" placeholder="Texto" required></textarea>
                 <input type="color" id="color" value="#ffffff" required />
                 <input type="text" id="code" placeholder="Código da cartinha" required />
-                <button type="button" id="generateButton">Gerar cartinha</button>
+                <button type="button" onclick="generateAndUpload()">Gerar cartinha</button>
             </div>
         </div>
     </main>
@@ -206,9 +300,6 @@
             // Faça o upload do arquivo
             uploadFile(file);
         }
-
-        // Certifique-se de que a função está associada ao botão após o carregamento do DOM
-        document.getElementById('generateButton').addEventListener('click', generateAndUpload);
     </script>        
 </body>
 </html>
