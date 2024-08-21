@@ -48,8 +48,8 @@ app.post('/send-tweet', async (req, res) => {
     const { text } = req.body; // Assume que o texto do tweet está no corpo da requisição
 
     const token = {
-        key: process.env.TWITTER_ACCESS_TOKEN,
-        secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+        key: process.env.TW_ACCESS_TOKEN,
+        secret: process.env.TW_ACCESS_TOKEN_SECRET
     };
 
     const request_data = {
