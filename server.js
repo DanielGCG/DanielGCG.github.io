@@ -3,7 +3,7 @@ const fetch = require('node-fetch').default;
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors'); // Adicionando o pacote cors
+const cors = require('cors');
 const OAuth = require('oauth-1.0a');
 const crypto = require('crypto');
 
@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 
 // Middleware para processar JSON no corpo das requisições
-app.use(express.json()); // Adicionei esta linha para garantir que o corpo das requisições seja processado como JSON
+app.use(express.json());
 
 // Define o diretório 'public' como estático para servir arquivos estáticos como HTML, CSS, etc.
 app.use(express.static(path.join(__dirname, 'public')));
@@ -45,7 +45,7 @@ const oauth = OAuth({
 
 // Rota para enviar um tweet
 app.post('/send-tweet', async (req, res) => {
-    const { text } = req.body; // Assume que o texto do tweet está no corpo da requisição
+    const { text } = req.body;
 
     const token = {
         key: process.env.TW_ACCESS_TOKEN,
@@ -59,10 +59,12 @@ app.post('/send-tweet', async (req, res) => {
     };
 
     try {
+        const authHeader = oauth.toHeader(oauth.authorize(request_data, token)).Authorization;
+
         const response = await fetch(request_data.url, {
             method: request_data.method,
             headers: {
-                'Authorization': oauth.toHeader(oauth.authorize(request_data, token)).Authorization,
+                'Authorization': authHeader,
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(request_data.data)
@@ -73,47 +75,40 @@ app.post('/send-tweet', async (req, res) => {
             res.json(result);
         } else {
             const error = await response.json();
+            console.error('Twitter API Error:', error); // Log detalhado do erro
             res.status(response.status).json(error);
         }
     } catch (error) {
+        console.error('Erro ao enviar o tweet:', error); // Log detalhado do erro
         res.status(500).json({ error: 'Erro ao enviar o tweet' });
     }
 });
 
 // Middleware para lidar com arquivos e diretórios
 app.use((req, res, next) => {
-    // Define o caminho absoluto do arquivo solicitado
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
 
-    // Verifica se o caminho é um diretório
     fs.stat(filePath, (err, stats) => {
         if (err) {
-            // Se o arquivo não for encontrado, retornar erro 404
             if (err.code === 'ENOENT') {
                 res.status(404).send('Página não encontrada');
             } else {
-                // Em caso de outro erro, retornar erro 500
                 res.status(500).send('Erro ao carregar a página.');
             }
         } else if (stats.isDirectory()) {
-            // Se o caminho for um diretório, redireciona para index.html dentro do diretório
             filePath = path.join(filePath, 'index.html');
             fs.readFile(filePath, (err, content) => {
                 if (err) {
-                    // Se o arquivo index.html não for encontrado, retornar erro 404
                     if (err.code === 'ENOENT') {
                         res.status(404).send('Página não encontrada');
                     } else {
-                        // Em caso de outro erro, retornar erro 500
                         res.status(500).send('Erro ao carregar a página.');
                     }
                 } else {
-                    // Envia o conteúdo do arquivo solicitado
                     res.status(200).type('html').send(content);
                 }
             });
         } else {
-            // Se o caminho não for um diretório, trata o arquivo normalmente
             let contentType = 'text/html';
             if (filePath.endsWith('.css')) {
                 contentType = 'text/css';
@@ -129,15 +124,12 @@ app.use((req, res, next) => {
 
             fs.readFile(filePath, (err, content) => {
                 if (err) {
-                    // Verifica se o erro é por arquivo não encontrado
                     if (err.code === 'ENOENT') {
                         res.status(404).send('Página não encontrada');
                     } else {
-                        // Em caso de outro erro, retorna um erro 500
                         res.status(500).send('Erro ao carregar a página.');
                     }
                 } else {
-                    // Envia o conteúdo do arquivo solicitado
                     res.status(200).type(contentType).send(content);
                 }
             });
