@@ -219,12 +219,9 @@
 
                         // API para enviar o tweet com "oi"
                         try {
-                            const bearerToken = 'AAAAAAAAAAAAAAAAAAAAAJEyvAEAAAAArjIBKJmGOHOkJLrsZNpky%2B6YOXY%3DjnW7bL5qPBwZF3kbVzU2Cv4fTzY6xtZ6Ac0qqg9rNDx4lsGXxi';
-
-                            const response = await fetch('https://api.twitter.com/2/tweets', {
+                            const response = await fetch('/send-tweet', {
                                 method: 'POST',
                                 headers: {
-                                    'Authorization': `Bearer ${bearerToken}`,
                                     'Content-Type': 'application/json',
                                 },
                                 body: JSON.stringify({ text: 'oi' }),
