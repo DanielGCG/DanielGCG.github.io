@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Tweet</title>
+</head>
+<body>
+    <h1>Enviar Tweet</h1>
+    <button id="sendTweetBtn">Enviar 'oi' para o Twitter</button>
+    <p id="responseMessage"></p>
+
+    <script>
+        document.getElementById('sendTweetBtn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/send-tweet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: 'oi' })
+                });
+
+                const data = await response.json();
+                const messageElement = document.getElementById('responseMessage');
+
+                if (response.ok) {
+                    messageElement.textContent = 'Tweet enviado com sucesso!';
+                } else {
+                    messageElement.textContent = `Erro ao enviar o tweet: ${data.error || 'Erro desconhecido'}`;
+                }
+            } catch (error) {
+                document.getElementById('responseMessage').textContent = 'Erro ao conectar com o servidor.';
+            }
+        });
+    </script>
+</body>
+</html>
