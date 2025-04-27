@@ -1,0 +1,108 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.caixa {
+    max-width: 800px;
+    width: 90vw;
+    height: 90vh;
+    min-width: 60vw;
+    background-color: #0453E4;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    font-size: 20px;
+    color: #333;
+}
+.caixa_menu {
+    width: 99%;
+    padding: 0.5rem;
+    display: flex;
+    background: #5E9BE2;
+    background: linear-gradient(#0058ee,#3593ff 4%,#288eff 6%,#127dff 8%,#036ffc 10%,#0262ee 14%,#0057e5 20%,#0054e3 24%,#0055eb 56%,#005bf5 66%,#026afe 76%,#0062ef 86%,#0052d6 92%,#0040ab 94%,#003092);
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.caixa_menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+.caixa_menu button img {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: block;
+}
+.caixa_interna {
+    width: 99%;
+    margin-bottom: 0.5vh;
+    height: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+#caixa_menu_itens_box {
+    display: flex;
+    gap: 10px;
+    color: #ccc
+}
+.caixa_interna_menu{
+    padding: 5px;
+    background: #EEEBDA;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.caixa_interna_menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+#caixa_interna_menu_itens_box {
+    display: flex;
+    gap: 10px;
+    padding-right: 10px;
+}
+.linha_divisoria {
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.caixa_interna_content {
+    overflow-y: auto;
+    background-color: #a1b5fe;
+    flex-grow: 1;
+}
+#esquerda, #direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#esquerda {
+    min-width: 220px;
+    background: linear-gradient(to bottom, rgb(119, 162, 231), rgb(101, 117, 212));
+}
+
+#direita {
+    position: relative;
+    width: 100%;
+    background-color: rgb(101, 117, 212); /* Cor sólida de fundo */
+}
