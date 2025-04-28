@@ -28,6 +28,7 @@
     }
 
     .text_box {
+        margin-top: 1rem;
         border-radius: 3px;
         display: flex;
         flex-direction: column;
@@ -89,11 +90,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    #direita_grid {
+    #direita_grid_1,  #direita_grid_2{
         background-color: #0453E4;
         border-radius: 3px;
         margin-left: 10px;
         margin-right: 10px;
+        height: max-content;
     }
 
     #direita_grid_menu {
@@ -137,6 +139,30 @@
         padding-bottom: 5px;
         font-size: 14px;
         color: #333;
+    }
+
+    .text_box_collection{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 16px;
+        justify-content: center;
+        align-items: start;
+        background-color: #EBF5FF;
+    }
+
+    .text_box_collection_iten img {
+        width: 60px;
+        height: 60px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 </style>
 
@@ -205,18 +231,21 @@
                         <div id="linha_divisoria_caixa_interna_content"></div>
                         <div class="small_box">
                             <div class="small_box_menu">
-                                <img src="public/ui_itens/img/Projects.png" style="width: 1.5rem; height: 1.5rem;">
-                                <label>On going projects</label>
+                                <img src="public/ui_itens/img/Experiences.png" style="width: 1.5rem; height: 1.5rem;">
+                                <label>Experiences</label>
                             </div>
                             <div class="small_box_itens_box">
-                                <div style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
-                                    <a href="https://github.com/DanielGCG/SitedoBotecoRS" target="_blank" class="link">•
-                                        Boteco's
-                                        webpage</a>
+                                <div style="margin-left: 10px;">
+                                    • UFRJ - Computer Science
                                 </div>
-                                <div style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
-                                    <a href="https://github.com/DanielGCG/ESP32-lora" target="_blank" class="link">•
-                                        ESP32 LoRa project</a>
+                                <div style="margin-left: 10px;">
+                                    • MOB 4.0
+                                </div>
+                                <div style="margin-left: 10px;">
+                                    • UFRJ Analytica
+                                </div>
+                                <div style="margin-left: 10px;">
+                                    • B2 English - Cambridge
                                 </div>
                             </div>
                         </div>
@@ -244,26 +273,74 @@
                             </div>
                         </div>
                         <div class="direita_grid">
-                            <div id="direita_grid">
+                            <div id="direita_grid_1">
                                 <div id="direita_grid_menu">
-                                    <img src="public/ui_itens/img/Search.png">
-                                    Qualifications / Experiences
+                                    <img src="public/ui_itens/img/Projects.png">
+                                    On going projects
                                 </div>
                                 <div id="direita_grid_itens_box">
-                                    <p>• UFRJ (4/9)</p>
-                                    <p>• MOB 4.0</p>
-                                    <P>• B2 English - Cambridge</P>
+                                    <a href="https://github.com/DanielGCG/SitedoBotecoRS" target="_blank" class="link">
+                                        <p>• Boteco's webpage</p>
+                                        </a>
+                                    <a href="https://github.com/DanielGCG/ESP32-lora" target="_blank" class="link">
+                                        <p>• ESP32-lora</p></a>
                                 </div>
                             </div>
-                            <div id="direita_grid">
+                            <div id="direita_grid_2">
                                 <div id="direita_grid_menu">
                                     <img src="public/ui_itens/img/Search.png">
                                     Areas of interest
                                 </div>
                                 <div id="direita_grid_itens_box">
-                                    <p>• Desenvolvimento Web</p>
-                                    <p>• Eletrônica</p>
-                                    <p>• Programação</p>
+                                    <p>• Development</p>
+                                    <p>• Embedded programming</p>
+                                    <p>• IoT</p>
+                                    <p>• Web development</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text_box">
+                            <div class="text_box_menu">
+                                <img src="public/ui_itens/img/About_me.png"
+                                    style="width: 1.5rem; height: 1.5rem; padding-left: 5px;"></img>
+                                Tecnologies I use
+                            </div>
+                            <div class="text_box_collection">
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/arduino.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/Lora.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/C.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/python.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/pandas.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/java.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/Javascript.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/css.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/html.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/Node.js.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/git.png"></img>
+                                </div>
+                                <div class="text_box_collection_iten">
+                                    <img src="public/pictures/firebase.png"></img>
                                 </div>
                             </div>
                         </div>
