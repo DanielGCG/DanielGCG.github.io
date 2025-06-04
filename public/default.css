@@ -1,14 +1,14 @@
 body, html {
-    height: 100%;
     margin: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 .caixa {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     max-width: 800px;
     width: 90vw;
-    height: 90vh;
+    /* height: max-content; */ /* Linha original */
     min-width: 60vw;
     background-color: #0453E4;
     border-radius: 5px;
@@ -16,13 +16,15 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
     font-size: 20px;
     color: #333;
 }
 .caixa_menu {
     width: 99%;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     display: flex;
     background: #5E9BE2;
     background: linear-gradient(#0058ee,#3593ff 4%,#288eff 6%,#127dff 8%,#036ffc 10%,#0262ee 14%,#0057e5 20%,#0054e3 24%,#0055eb 56%,#005bf5 66%,#026afe 76%,#0062ef 86%,#0052d6 92%,#0040ab 94%,#003092);
@@ -88,8 +90,14 @@ body, html {
 }
 .caixa_interna_content {
     overflow-y: auto;
-    background-color: #a1b5fe;
+    background-color: rgb(101, 117, 212);
     flex-grow: 1;
+    padding-bottom: 1rem;
+}
+#direita_esquerda {
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 #esquerda, #direita {
     display: flex;
@@ -105,4 +113,34 @@ body, html {
     position: relative;
     width: 100%;
     background-color: rgb(101, 117, 212); /* Cor sólida de fundo */
+}
+
+@media (max-width: 768px) {
+    #body{
+        align-items: center;
+    }
+    #direita_esquerda {
+        display: block;
+        flex-direction: column;
+    }
+    #linha_divisoria_caixa_interna_content {
+        display: none;
+    }
+    #small_boxes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .small_box:first-child {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    .small_box:last-child {
+        margin-right: 10px;
+        margin-left: 0;
+    }    
+    .small_box_itens_box {
+        height: 100%;
+    }
 }
